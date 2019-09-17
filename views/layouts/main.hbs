@@ -17,9 +17,35 @@
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </import>
+  <!-- custom CSS -->
+  <link rel="stylesheet" href="/css/main.css">
   <title>Expense Record</title>
 </head>
 <body>
-  {{{body}}}
+  <header>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/">Navbar</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    {{{body}}}
+  </main>
+
+  <footer class="bg-dark fixed-bottom">
+    <div class="container py-4 text-center">
+      <div class="d-inline-block mx-auto">
+        <a href="https://github.com/Lastor-Chen/expense-tracker" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+        <span class="d-block text-white-50">
+          - Made in 2019 - <br>
+          - Server system built on Node.js with Express framework -
+        </span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
