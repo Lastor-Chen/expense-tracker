@@ -19,7 +19,9 @@
   </import>
   <!-- custom CSS -->
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/css/{{css}}.css">
+  {{#if css}}
+    <link rel="stylesheet" href="/css/{{css}}.css">
+  {{/if}}
   <title>Expense Record</title>
 </head>
 <body>
