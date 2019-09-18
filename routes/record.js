@@ -17,8 +17,7 @@ router.get('/new', (req, res) => {
 
 router.post('/new', (req, res) => {
   const input = req.body
-  console.log(input)
-
+  
   Record.create(input, (err, record) => {
     if (err) console.error(err)
     res.redirect('/index')

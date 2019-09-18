@@ -18,9 +18,14 @@ router.get('/index', (req,res) => {
   Recode.find((err, records) => {
     if (err) console.error(err)
 
-    // 取得 font-awesome icon 名稱
-    lib.getCategoryIcon(records)
+    for (const record of records) {
+      // 取得 font-awesome icon 名稱
+      lib.getCategoryIcon(record)
 
+      // format Date
+      record.showDate = record.date.toLocaleDateString('zh-tw')
+    }
+    
     res.render('index', { css: 'index', records })
   })
 })
