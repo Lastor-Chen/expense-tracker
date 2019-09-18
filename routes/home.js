@@ -22,8 +22,8 @@ router.get('/index', (req,res) => {
       // 取得 font-awesome icon 名稱
       lib.getCategoryIcon(record)
 
-      // format Date
-      record.showDate = record.date.toLocaleDateString('zh-tw')
+      // format Date { yyyy-mm-dd }
+      record.showDate = record.date.toJSON().split('T')[0]
     }
     
     res.render('index', { css: 'index', records })
