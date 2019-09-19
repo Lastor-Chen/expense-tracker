@@ -11,7 +11,7 @@ const router = express.Router()
 // ==============================
 
 router.get('/signin', (req, res) => {
-  res.send('sign in')
+  res.render('signin', { css: 'sign' })
 })
 
 router.get('/signup', (req, res) => {
