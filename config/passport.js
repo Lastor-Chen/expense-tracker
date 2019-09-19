@@ -42,7 +42,7 @@ const fbOption = {
   clientID: process.env.FACEBOOK_ID,
   clientSecret: process.env.FACEBOOK_SECRET,
   callbackURL: process.env.FACEBOOK_CALLBACK,
-  profileFields: ['email']
+  profileFields: ['email', 'displayName']
 }
 
 function fbCallback(accessToken, refreshToken, profile, cb) {
