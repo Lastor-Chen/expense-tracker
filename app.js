@@ -9,10 +9,19 @@ const mongoose = require('mongoose')                    // mongoDB ODM
 const exphbs = require('express-handlebars')            // template engine
 
 const methodOverride = require('method-override')       // 控制 form method
+const session = require('express-session')              // session 輔助套件
+const passport = require('passport')                    // 處理 user authentication
+const flash = require('connect-flash')                  // 產生 flash message
+
+// dev mode
+const dotenv = require('dotenv')                        // 透過 .env 設定環境變數
 
 
 // 環境 setting
 // ==============================
+
+// 開發模式，使用環境變數
+if (process.env.NODE_ENV !== 'production') { dotenv.config() }
 
 const app = express()
 const MONGODB_URL = process.env.MONGODB_URI || 'mongodb://localhost/record'
@@ -21,6 +30,17 @@ app.set('port', process.env.PORT || 3000)
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+app.use(flash())
+
+// 設定 session 與 passport
+app.use(session({
+  secret: 'ru45;41p3',
+  resave: false,
+  saveUninitialized: true
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+require('./config/passport.js')(passport)
 
 // 設定模板引擎
 app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'main' }))
