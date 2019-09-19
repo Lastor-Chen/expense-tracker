@@ -5,7 +5,7 @@
 
 /**
  * 僅顯示被選擇的 category
- * @param {String} [keyword] category name
+ * @param {String} keyword category name
  */
 function showSelected(keyword) {
   $('[data-cate]').each((index, elem) => {

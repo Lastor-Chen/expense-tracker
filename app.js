@@ -16,6 +16,8 @@ const flash = require('connect-flash')                  // 產生 flash message
 // dev mode
 const dotenv = require('dotenv')                        // 透過 .env 設定環境變數
 
+// custom module
+const isAuthed = require('./config/auth.js')
 
 // 環境 setting
 // ==============================
@@ -73,8 +75,8 @@ db.once('open', console.log.bind(console, 'mongoDB is connected.'))
 // ==============================
 
 app.use('/users', require('./routes/user.js'))
-app.use('/records', require('./routes/record.js'))
-app.use('/', require('./routes/home.js'))
+app.use('/records', isAuthed,require('./routes/record.js'))
+app.use('/', isAuthed,require('./routes/home.js'))
 
 // start server
 // ==============================
