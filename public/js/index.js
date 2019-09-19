@@ -23,6 +23,9 @@ $('#filter').on('input', e => {
   $('[data-cate]').each( (index, elem) => {
     const category = elem.dataset.cate
 
+    // elem.hidden 帶 false 將導致迭代中斷，故改用 jquery
+    if (keyword === 'all') return $(elem).attr('hidden', false)
+    
     if (category !== keyword) { elem.hidden = true }
     if (category === keyword) { elem.hidden = false }
   })
