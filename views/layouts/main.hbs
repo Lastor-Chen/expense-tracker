@@ -19,7 +19,16 @@
   <header>
     <nav class="navbar navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="/">Navbar</a>
+        <a class="navbar-brand" href="/">簡單記帳簿</a>
+      </div>
+      <div class="ml-auto">
+        {{#if user}}
+          <a href="/users/signout" class="btn btn-outline-secondary">登出</a>
+        {{else if signin}}
+          <a href="/users/signup" class="btn btn-outline-info">註冊</a>
+        {{else}}
+          <a href="/users/signin" class="btn btn-outline-info">登入</a>
+        {{/if}}
       </div>
     </nav>
   </header>

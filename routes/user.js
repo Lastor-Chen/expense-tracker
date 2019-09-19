@@ -17,7 +17,7 @@ const { checkSignUp } = require('../lib/lib.js')
 router.get('/signin', (req, res) => {
   const email = req.flash('email')
 
-  res.render('signin', { css: 'sign', email })
+  res.render('signin', { css: 'sign', signin: 'signin' ,email })
 })
 
 router.post('/signin', (req, res, next) => {
