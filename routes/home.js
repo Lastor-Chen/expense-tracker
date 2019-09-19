@@ -18,14 +18,20 @@ router.get('/index', (req,res) => {
   Recode.find((err, records) => {
     if (err) console.error(err)
 
+    let times = 1
     for (const record of records) {
       // 取得 font-awesome icon 名稱
-      lib.getCategoryIcon(record)
+      record.iconName = lib.getCategoryIcon(record)
 
       // format Date { yyyy-mm-dd }
       record.showDate = record.date.toJSON().split('T')[0]
+
+      // 加入奇數列 flag
+      if (times % 2 === 1) { record.oddEven = 'odd'}
+      
+      times++
     }
-    
+
     res.render('index', { css: 'index', js: 'index', records })
   })
 })

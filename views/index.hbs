@@ -1,6 +1,7 @@
 <div class="container mt-5">
   <div class="w-75 mx-auto">
-    <select name="filter">
+    <select id="filter" name="filter">
+      <option value="" disabled selected>分類</option>
       <option value="家居物業">家居物業</option>
       <option value="交通出行">交通出行</option>
       <option value="休閒娛樂">休閒娛樂</option>
@@ -13,12 +14,12 @@
     {{!-- record plane --}}
     <div class="data-plane">
       {{#each records}}
-        <div class="record-ls row align-items-center">
+        <div class="record-ls row align-items-center {{oddEven}}" data-cate="{{category}}">
           {{!-- record 內容 --}}
           <div class="record col p-1">
             <div class="row align-items-center justify-content-between">
               <div class="col-2 pr-0 text-center">
-                <i class="fas {{category}} kind-icon"></i>
+                <i class="fas {{iconName}} kind-icon"></i>
               </div>
               <div class="col-auto pl-0">
                 <h5 class="mb-0">{{name}}</h5>
