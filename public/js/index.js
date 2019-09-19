@@ -30,8 +30,7 @@ $('#filter').on('input', e => {
     if (category === keyword) { elem.hidden = false }
   })
 
-  // 重設顯示中的 record 之 UI style
-  // 使符合背景色，灰 => 白 => 灰 => 白...
+  // 重設 visible record 之 UI style
   let times = 1
   $('[data-cate]:visible').each( (index, elem) => {
     elem.classList.remove('odd')
@@ -39,4 +38,12 @@ $('#filter').on('input', e => {
     if (times % 2 === 1) { elem.classList.add('odd') }
     times++
   })
+
+  // 計算總金額
+  let sum = 0
+  $('[data-cate]:visible .amount').each( (index, elem) => {
+    sum += (+elem.textContent)
+  })
+
+  $('#sum').html(sum)
 })

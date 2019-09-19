@@ -10,7 +10,7 @@
       <option value="其他">其他</option>
     </select>
     
-    <p>總金額: <span class="h4">100</span></p>
+    <p>總金額: <span id="sum" class="h4">{{sum}}</span></p>
     
     {{!-- record plane --}}
     <div class="data-plane">
@@ -26,7 +26,10 @@
                 <h5 class="mb-0">{{name}}</h5>
                 <small>{{showDate}}</small>
               </div>
-              <div class="col-2 ml-auto mr-2 text-right">$ {{amount}}</div>
+              <div class="col-2 ml-auto mr-2 text-right">
+                <span>$</span>
+                <span class="amount">{{amount}}</span>
+              </div>
             </div>
           </div>
           {{!-- 按鈕群 --}}
