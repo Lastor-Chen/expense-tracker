@@ -15,7 +15,21 @@ const { checkSignUp } = require('../lib/lib.js')
 // ==============================
 
 router.get('/signin', (req, res) => {
-  res.render('signin', { css: 'sign' })
+  const email = req.flash('email')
+
+  res.render('signin', { css: 'sign', email })
+})
+
+router.post('/signin', (req, res, next) => {
+  // 登入失敗時，保留 input email
+  req.flash('email', req.body.email)
+
+  passport.authenticate('local', {
+    successRedirect: '/index',
+    failureRedirect: '/users/signin',
+    failureFlash: true,
+    badRequestMessage: '您沒有輸入帳號或密碼'
+  })(req, res, next)
 })
 
 router.get('/signup', (req, res) => {
