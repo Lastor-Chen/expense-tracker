@@ -15,7 +15,7 @@ router.get('/signin', (req, res) => {
 })
 
 router.get('/signup', (req, res) => {
-  res.send('sign up')
+  res.render('signup', { css: 'sign'})
 })
 
 router.get('/signout', (req, res) => {
