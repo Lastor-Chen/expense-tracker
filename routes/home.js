@@ -26,7 +26,7 @@ router.get('/index', (req,res) => {
       record.showDate = record.date.toJSON().split('T')[0]
     }
     
-    res.render('index', { css: 'index', records })
+    res.render('index', { css: 'index', js: 'index', records })
   })
 })
 
