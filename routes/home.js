@@ -18,7 +18,7 @@ router.get('/index', (req,res) => {
   Recode.find({ userId: req.user.id }, (err, records) => {
     if (err) console.error(err)
 
-    let sum = 0
+    let totalAmount = 0
     let times = 1
     for (const record of records) {
       // 取得 font-awesome icon 名稱
@@ -31,12 +31,12 @@ router.get('/index', (req,res) => {
       if (times % 2 === 1) { record.oddEven = 'odd'}
       
       // 計算總金額
-      sum += record.amount
+      totalAmount += record.amount
 
       times++
     }
 
-    res.render('index', { css: 'index', js: 'index', records, sum })
+    res.render('index', { css: 'index', js: 'index', records, totalAmount })
   })
 })
 

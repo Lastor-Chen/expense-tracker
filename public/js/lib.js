@@ -35,7 +35,7 @@ function setOddEven() {
 /**
  * 計算 visible record 總金額，顯示於頁面
  */
-function getSum() {
+function getTotalAmount() {
   let sum = 0
   $('[data-cate]:visible .amount').each((index, elem) => {
     sum += (+elem.textContent)
@@ -47,4 +47,4 @@ function getSum() {
 // export
 // =================================
 
-export { showSelected, setOddEven, getSum }
+export { showSelected, setOddEven, getTotalAmount }

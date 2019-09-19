@@ -2,7 +2,7 @@
 
 // import module
 // =================================
-import { showSelected, setOddEven, getSum } from './lib.js'
+import { showSelected, setOddEven, getTotalAmount } from './lib.js'
 
 
 // 執行序
@@ -38,5 +38,5 @@ $('#filter').on('input', e => {
   setOddEven()
 
   // 計算總金額，顯示於頁面
-  getSum()
+  getTotalAmount()
 })
