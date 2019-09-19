@@ -5,10 +5,18 @@
 import { showSelected, setOddEven, getSum } from './lib.js'
 
 
-// 刪除確認
+// 執行序
 // =================================
 
-// 僅監聽父層避免產生過多 listener
+// 此窗口為 OAuth pop-up 導入時，關閉
+if (window.name === 'OAuth') {
+  // 父視窗重新導向
+  window.opener.location.replace('/index')
+  window.close()
+}
+
+
+// 刪除確認，僅監聽父層避免產生過多 listener
 $('.data-plane').submit(e => {
   e.preventDefault()
 
@@ -20,7 +28,6 @@ $('.data-plane').submit(e => {
 
 
 // Filter
-// =================================
 $('#filter').on('input', e => {
   const keyword = e.target.value
 

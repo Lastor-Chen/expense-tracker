@@ -75,6 +75,7 @@ db.once('open', console.log.bind(console, 'mongoDB is connected.'))
 // ==============================
 
 app.use('/users', require('./routes/user.js'))
+app.use('/auth', require('./routes/auth.js'))
 app.use('/records', isAuthed,require('./routes/record.js'))
 app.use('/', isAuthed,require('./routes/home.js'))
 

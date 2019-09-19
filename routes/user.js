@@ -17,7 +17,7 @@ const { checkSignUp } = require('../lib/lib.js')
 router.get('/signin', (req, res) => {
   const email = req.flash('email')
 
-  res.render('signin', { css: 'sign', signin: 'signin' ,email })
+  res.render('signin', { css: 'sign', js: 'sign', signin: 'signin' ,email })
 })
 
 router.post('/signin', (req, res, next) => {
@@ -33,7 +33,7 @@ router.post('/signin', (req, res, next) => {
 })
 
 router.get('/signup', (req, res) => {
-  res.render('signup', { css: 'sign'})
+  res.render('signup', { css: 'sign', js: 'sign'})
 })
 
 router.post('/signup', async (req, res, next) => {
@@ -60,7 +60,7 @@ router.post('/signup', async (req, res, next) => {
 router.get('/signout', (req, res) => {
   req.logout()
   req.flash('success', '您已成功登出')
-  
+
   res.redirect('/users/signin')
 })
 
