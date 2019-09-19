@@ -13,7 +13,12 @@ const { categoryMap } = require('../lib/lib.js')
 // ==============================
 
 router.get('/new', (req, res) => {
-  res.render('new')
+  const select = []
+  Object.keys(categoryMap).forEach(name => {
+    select.push({ category: name })
+  })
+
+  res.render('newEdit', { new: 'new', select })
 })
 
 router.post('/new', (req, res) => {
@@ -44,7 +49,7 @@ router.get('/:id/edit', (req, res) => {
       select.push(obj)
     })
     
-    res.render('edit', { id, record, select })
+    res.render('newEdit', { id, record, select })
   })
 })
 

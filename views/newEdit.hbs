@@ -1,5 +1,11 @@
 <div class="container mt-5">
-  <form action="/records/{{id}}/edit?_method=PUT" method="POST">
+  {{!-- new page or edit page --}}
+  {{#if new}}
+    <form action="/records/new" method="POST">
+  {{else}}
+    <form action="/records/{{id}}/edit?_method=PUT" method="POST">
+  {{/if}}
+  
     <div class="form-group">
       <input type="name" class="form-control" name="name" placeholder="名稱 *" value="{{record.name}}" required>
     </div>
@@ -11,7 +17,7 @@
         <option value="" disabled>類別</option>
 
         {{#each select}}
-        <option value="{{category}}" {{#if selected}}selected{{/if}}>{{category}}</option>
+          <option value="{{category}}" {{#if selected}}selected{{/if}}>{{category}}</option>
         {{/each}}
         
       </select>
@@ -19,7 +25,10 @@
     <div class="form-group">
       <input type="number" class="form-control" name="amount" placeholder="金額 *" min="0" step="1" value="{{record.amount}}" required>
     </div>
-
-    <button type="submit" class="btn btn-primary">確認</button>
+    {{#if new}}
+      <button type="submit" class="btn btn-primary">新增</button>
+    {{else}}
+      <button type="submit" class="btn btn-primary">確認</button>
+    {{/if}}
   </form>
 </div>
