@@ -46,6 +46,19 @@ require('./config/passport.js')(passport)
 app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'main' }))
 app.set('view engine', 'hbs')
 
+// 模板引擎公用變數
+app.use((req, res, next) => {
+  // user 資料
+  res.locals.user = req.user
+
+  // flash message
+  res.locals.success = req.flash('success')
+  res.locals.warning = req.flash('warning')
+  res.locals.error = req.flash('error')
+
+  next()
+})
+
 // 連接資料庫 mongoDB
 mongoose.connect(MONGODB_URL,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
