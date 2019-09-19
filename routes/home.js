@@ -15,7 +15,7 @@ const lib = require('../lib/lib.js')
 router.get('/', (req, res) => res.redirect('/index'))
 
 router.get('/index', (req,res) => {
-  Recode.find((err, records) => {
+  Recode.find({ userId: req.user.id }, (err, records) => {
     if (err) console.error(err)
 
     let sum = 0

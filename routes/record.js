@@ -7,7 +7,8 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../models/record.js')
 
-const { categoryMap } = require('../lib/lib.js')
+const { categoryMap, getOwnerId } = require('../lib/lib.js')
+
 
 // routes '/record'
 // ==============================
@@ -22,8 +23,9 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/new', (req, res) => {
-  const input = req.body
-  
+  const input = { ...req.body }
+  input.userId = req.user.id
+
   Record.create(input, err => {
     if (err) return console.error(err)
     res.redirect('/index')
@@ -33,8 +35,11 @@ router.post('/new', (req, res) => {
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
 
-  Record.findOne({ _id: id }, (err, record) => {
+  Record.findOne(getOwnerId(req), (err, record) => {
     if (err) return console.error(err)
+
+    // 非擁有者時，導回首頁
+    if (!record) return res.redirect('/index')
 
     // format date { yyyy-mm-dd }
     record.showDate = record.date.toJSON().split('T')[0]
@@ -56,8 +61,11 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id/edit', (req, res) => {
   const input = req.body
 
-  Record.findOne({ _id: req.params.id }, (err, record) => {
+  Record.findOne(getOwnerId(req), (err, record) => {
     if (err) return console.error(err)
+
+    // 非擁有者時，導回首頁
+    if (!record) return res.redirect('/index')
 
     // 將 user input 回存
     for (const key in input) {
@@ -72,8 +80,12 @@ router.put('/:id/edit', (req, res) => {
 })
 
 router.delete('/:id/delete', (req, res) => {
-  Record.findOne({ _id: req.params.id }, (err, record) => {
+  Record.findOne(getOwnerId(req), (err, record) => {
     if (err) return console.error(err)
+
+    // 非擁有者時，導回首頁
+    if (!record) return res.redirect('/index')
+
     record.remove(err => {
       if (err) return console.error(err)
       res.redirect('/index')
