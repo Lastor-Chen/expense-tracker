@@ -4,12 +4,14 @@
 // =========================
 
 const mongoose = require('mongoose')
-
+const bcrypt = require('bcryptjs')
 const Record = require('../record.js')
 const records = require('./records.json')
+const User = require('../user.js')
+const users = require('./users.json')
 
 
-// 主執行序
+// 生成 user 與 record 假資料
 // =========================
 
 const MONGODB_URL = process.env.MONGODB_URI || 'mongodb://localhost/record'
@@ -25,10 +27,28 @@ db.once('open', async () => {
   console.log('\033[33m[seeder] mongoDB is connected')
   console.log('[seeder] Data is creating...\033[0m')
 
-  for (const record of records) {
-    await Record.create(record)
+  // 生成 user docs，密碼加鹽 Sync
+  const salt = bcrypt.genSaltSync(10)
+  for (const user of users) {
+    const hash = bcrypt.hashSync(user.password, salt)
+    user.password = hash
+
+    await User.create(user)
   }
 
-  console.log('\033[32m[seeder] Sample docs are created from seeder\033[0m')
-  process.exit()
+  // 生成 record docs，關聯 userId
+  User.find(async (err, users) => {
+    if (err) console.error(err)
+
+    // 加入 userId
+    for (let index = 0; index <= 5; index++) {
+      if (index <= 2) { records[index].userId = users[0].id }
+      if (index >= 3) { records[index].userId = users[1].id }
+    }
+
+    await Record.create(...records)
+
+    console.log('\033[32m[seeder] Sample docs are created from seeder\033[0m')
+    process.exit()
+  })
 })
