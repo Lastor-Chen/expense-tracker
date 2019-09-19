@@ -39,6 +39,7 @@ db.once('open', console.log.bind(console, 'mongoDB is connected.'))
 // route 設定
 // ==============================
 
+app.use('/users', require('./routes/user.js'))
 app.use('/records', require('./routes/record.js'))
 app.use('/', require('./routes/home.js'))
 
