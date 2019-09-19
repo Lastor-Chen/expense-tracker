@@ -58,7 +58,10 @@ router.post('/signup', async (req, res, next) => {
 })
 
 router.get('/signout', (req, res) => {
-  res.send('sign out')
+  req.logout()
+  req.flash('success', '您已成功登出')
+  
+  res.redirect('/users/signin')
 })
 
 // export
