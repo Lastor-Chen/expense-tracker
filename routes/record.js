@@ -19,7 +19,7 @@ router.get('/new', (req, res) => {
   // HTML select list 參照表
   const select = getSelectList()
 
-  res.render('newEdit', { new: 'new', select })
+  res.render('newEdit', { js: 'newEdit',new: 'new', select })
 })
 
 router.post('/new', (req, res) => {
@@ -47,7 +47,7 @@ router.get('/:id/edit', (req, res) => {
     // HTML select list 參照表，依 record 標記 selected
     const select = getSelectList(record)
     
-    res.render('newEdit', { id, record, select })
+    res.render('newEdit', { js: 'newEdit',id, record, select })
   })
 })
 
