@@ -1,46 +1,44 @@
-<div class="container mt-5">
-  <div class="w-75 mx-auto">
-    <select id="filter" name="filter">
-      <option value="" disabled selected>分類</option>
-      <option value="all">全部</option>
-      {{#each select}}
-        <option value="{{category}}">{{category}}</option>
-      {{/each}}
-    </select>
-    
-    <p>總金額: <span id="sum" class="h4">{{totalAmount}}</span></p>
-    
-    {{!-- record plane --}}
-    <div class="data-plane">
-      {{#each records}}
-        <div class="record-ls row align-items-center {{oddEven}}" data-cate="{{category}}">
-          {{!-- record 內容 --}}
-          <div class="record col p-1">
-            <div class="row align-items-center justify-content-between">
-              <div class="col-2 pr-0 text-center">
-                <i class="fas {{iconName}} kind-icon"></i>
-              </div>
-              <div class="col-auto pl-0">
-                <h5 class="mb-0">{{name}}</h5>
-                <small>{{showDate}}</small>
-              </div>
-              <div class="col-2 ml-auto mr-2 text-right">
-                <span>$</span>
-                <span class="amount">{{amount}}</span>
-              </div>
+<div class="w-75 mx-auto">
+  <select id="filter" name="filter">
+    <option value="" disabled selected>分類</option>
+    <option value="all">全部</option>
+    {{#each select}}
+      <option value="{{category}}">{{category}}</option>
+    {{/each}}
+  </select>
+  
+  <p>總金額: <span id="sum" class="h4">{{totalAmount}}</span></p>
+  
+  {{!-- record plane --}}
+  <div class="data-plane">
+    {{#each records}}
+      <div class="record-ls row align-items-center {{oddEven}}" data-cate="{{category}}">
+        {{!-- record 內容 --}}
+        <div class="record col p-1">
+          <div class="row align-items-center justify-content-between">
+            <div class="col-2 pr-0 text-center">
+              <i class="fas {{iconName}} kind-icon"></i>
+            </div>
+            <div class="col-auto pl-0">
+              <h5 class="mb-0">{{name}}</h5>
+              <small>{{showDate}}</small>
+            </div>
+            <div class="col-2 ml-auto mr-2 text-right">
+              <span>$</span>
+              <span class="amount">{{amount}}</span>
             </div>
           </div>
-          {{!-- 按鈕群 --}}
-          <div class="col-auto ml-auto">
-            <a href="/records/{{id}}/edit">修改</a>
-            <form class="del-form d-inline-block" action="/records/{{id}}/delete?_method=DELETE" method="POST">
-              <button type="submit">刪除</button>
-            </form>
-          </div>
         </div>
-      {{/each}}
-    </div>
-   
-    <a href="/records/new" class="btn btn-primary mt-5">新增支出</a>
+        {{!-- 按鈕群 --}}
+        <div class="col-auto ml-auto">
+          <a href="/records/{{id}}/edit">修改</a>
+          <form class="del-form d-inline-block" action="/records/{{id}}/delete?_method=DELETE" method="POST">
+            <button type="submit">刪除</button>
+          </form>
+        </div>
+      </div>
+    {{/each}}
   </div>
+  
+  <a href="/records/new" class="btn btn-primary mt-5">新增支出</a>
 </div>
