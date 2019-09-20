@@ -41,7 +41,7 @@ router.post('/signup', async (req, res, next) => {
 
   // 檢查表單
   let error = await checkSignUp(input)
-  if (error) return res.render('signup', { input, error, css: 'sign' })
+  if (error.length) return res.render('signup', { input, error, css: 'sign' })
 
   // 註冊帳號
   const salt = bcrypt.genSaltSync(10);

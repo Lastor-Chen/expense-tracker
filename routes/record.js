@@ -8,22 +8,31 @@ const router = express.Router()
 const Record = require('../models/record.js')
 
 // custom module
-const { categoryMap, getSelectList } = require('../models/category.js')
-const { getOwnerId } = require('../models/lib/lib.js')
+const { getSelectList } = require('../models/category.js')
+const { getOwnerId, checkNewEdit } = require('../models/lib/lib.js')
 
 
-// routes '/record'
+// routes '/records'
 // ==============================
 
 router.get('/new', (req, res) => {
   // HTML select list 參照表
   const select = getSelectList()
 
-  res.render('newEdit', { js: 'newEdit',new: 'new', select })
+  res.render('newEdit', { js: 'newEdit', new: 'new', select })
 })
 
 router.post('/new', (req, res) => {
   const input = { ...req.body }
+
+  // 檢查表單
+  let error = checkNewEdit(input)
+  if (error.length) {
+    req.flash('error', error)
+    return res.redirect('/records/new')
+  }
+
+  // 儲存至 database
   input.userId = req.user.id
 
   Record.create(input, err => {
@@ -47,13 +56,22 @@ router.get('/:id/edit', (req, res) => {
     // HTML select list 參照表，依 record 標記 selected
     const select = getSelectList(record)
     
-    res.render('newEdit', { js: 'newEdit',id, record, select })
+    res.render('newEdit', { js: 'newEdit', id, record, select })
   })
 })
 
 router.put('/:id/edit', (req, res) => {
   const input = req.body
+  const id = req.params.id
 
+  // 檢查表單
+  let error = checkNewEdit(input)
+  if (error.length) {
+    req.flash('error', error)
+    return res.redirect(`/records/${id}/edit`)
+  }
+
+  // 儲存至 database
   Record.findOne(getOwnerId(req), (err, record) => {
     if (err) return console.error(err)
 
