@@ -16,10 +16,13 @@ const { getOwnerId, checkNewEdit } = require('../models/lib/lib.js')
 // ==============================
 
 router.get('/new', (req, res) => {
-  // HTML select list 參照表
-  const select = getSelectList()
+  // 上一筆輸入 ( flash 回傳為陣列，需往內指 )
+  const input = req.flash('input')[0]
 
-  res.render('newEdit', { js: 'newEdit', new: 'new', select })
+  // HTML select list 參照表，依 input 標記 selected
+  const select = getSelectList(input)
+
+  res.render('newEdit', { js: 'newEdit', new: 'new', select, input })
 })
 
 router.post('/new', (req, res) => {
@@ -29,6 +32,7 @@ router.post('/new', (req, res) => {
   let error = checkNewEdit(input)
   if (error.length) {
     req.flash('error', error)
+    req.flash('input', input)
     return res.redirect('/records/new')
   }
 
@@ -44,6 +48,9 @@ router.post('/new', (req, res) => {
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
 
+  // 上一筆輸入 ( flash 回傳為陣列，需往內指 )
+  const input = req.flash('input')[0]
+
   Record.findOne(getOwnerId(req), (err, record) => {
     if (err) return console.error(err)
 
@@ -56,7 +63,7 @@ router.get('/:id/edit', (req, res) => {
     // HTML select list 參照表，依 record 標記 selected
     const select = getSelectList(record)
     
-    res.render('newEdit', { js: 'newEdit', id, record, select })
+    res.render('newEdit', { js: 'newEdit', id, record, select, input })
   })
 })
 
@@ -68,6 +75,7 @@ router.put('/:id/edit', (req, res) => {
   let error = checkNewEdit(input)
   if (error.length) {
     req.flash('error', error)
+    req.flash('input', input)
     return res.redirect(`/records/${id}/edit`)
   }
 

@@ -1,21 +1,31 @@
-{{!-- new page or edit page --}}
 <div class="row">
   <div class="col-10 col-md-8 col-lg-6 mx-auto">
     {{> alert}}
 
+    {{!-- new or edit 頁面 --}}
     {{#if new}}
       <form action="/records/new" method="POST">
     {{else}}
       <form action="/records/{{id}}/edit?_method=PUT" method="POST">
     {{/if}}
       <div class="form-group">
-        <input type="name" class="form-control" name="name" placeholder="名稱 *" value="{{record.name}}" required>
+        {{!-- 如表單檢查沒過，保留上一筆 input --}}
+        {{#if input}}
+          <input type="name" class="form-control" name="name" placeholder="名稱 *" value="{{input.name}}" required>
+        {{else}}
+          <input type="name" class="form-control" name="name" placeholder="名稱 *" value="{{record.name}}" required>
+        {{/if}}
       </div>
       <div class="form-group">
-        <input type="date" class="form-control" name="date" placeholder="日期 *" value="{{record.showDate}}" required>
+        {{#if input}}
+          <input type="date" class="form-control" name="date" placeholder="日期 *" value="{{input.date}}" required>
+        {{else}}
+          <input type="date" class="form-control" name="date" placeholder="日期 *" value="{{record.showDate}}" required>
+        {{/if}}
       </div>
       <div class="form-group">
-        <select class="form-control" name="category">
+        <select class="form-control" name="category" required>
+          {{!-- 只有 new 頁面預設顯示 "分類" --}}
           <option value="" disabled {{#if new}}selected{{/if}}>分類</option>
           {{#each select}}
             <option value="{{category}}" {{#if selected}}selected{{/if}}>{{category}}</option>
@@ -23,8 +33,11 @@
         </select>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control" name="amount" placeholder="金額 *" min="0" step="1"
-          value="{{record.amount}}" required>
+        {{#if input}}
+          <input type="number" class="form-control" name="amount" placeholder="金額 *" min="0" step="1" value="{{input.amount}}" required>
+        {{else}}
+          <input type="number" class="form-control" name="amount" placeholder="金額 *" min="0" step="1" value="{{record.amount}}" required>
+        {{/if}}
       </div>
       <div class="form-group text-right">
         <button type="submit" class="btn btn-primary">確認</button>
