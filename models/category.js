@@ -30,7 +30,26 @@ function getCategoryIcon(record) {
   }
 }
 
+/**
+ * 依 categoryMap 生成 select list 參照陣列，標記 selected
+ * @param {*} [record] mongoose doc
+ * @returns {Array} [{ category: "String", selected: Boolean }...]
+ */
+function getSelectList(record = {}) {
+  const select = []
+
+  Object.keys(categoryMap).forEach(name => {
+    const obj = { category: name }
+
+    if (name === record.category) { obj.selected = true }
+    select.push(obj)
+  })
+
+  return select
+}
+
+
 // export
 // ==============================
 
-module.exports = { categoryMap, getCategoryIcon }
+module.exports = { categoryMap, getCategoryIcon, getSelectList }

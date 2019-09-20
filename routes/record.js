@@ -8,7 +8,7 @@ const router = express.Router()
 const Record = require('../models/record.js')
 
 // custom module
-const { categoryMap } = require('../models/category.js')
+const { categoryMap, getSelectList } = require('../models/category.js')
 const { getOwnerId } = require('../models/lib/lib.js')
 
 
@@ -16,10 +16,8 @@ const { getOwnerId } = require('../models/lib/lib.js')
 // ==============================
 
 router.get('/new', (req, res) => {
-  const select = []
-  Object.keys(categoryMap).forEach(name => {
-    select.push({ category: name })
-  })
+  // HTML select list 參照表
+  const select = getSelectList()
 
   res.render('newEdit', { new: 'new', select })
 })
@@ -46,15 +44,8 @@ router.get('/:id/edit', (req, res) => {
     // format date { yyyy-mm-dd }
     record.showDate = record.date.toJSON().split('T')[0]
 
-    // 製作 category 之 HTML select，找出 selected 上 flag
-    // @select { Array } [{ category: "String", selected: Boolean }, ...]
-    const select = []
-    Object.keys(categoryMap).forEach(name => {
-      const obj = { category: name }
-      if (name === record.category) { obj.selected = true } 
-      
-      select.push(obj)
-    })
+    // HTML select list 參照表，依 record 標記 selected
+    const select = getSelectList(record)
     
     res.render('newEdit', { id, record, select })
   })
