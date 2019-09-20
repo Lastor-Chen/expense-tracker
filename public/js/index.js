@@ -38,5 +38,6 @@ $('#filter').on('input', e => {
   setOddEven()
 
   // 計算總金額，顯示於頁面
-  getTotalAmount()
+  const totalAmount = getTotalAmount()
+  $('#sum').html(totalAmount)
 })

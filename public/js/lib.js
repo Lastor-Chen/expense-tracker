@@ -41,7 +41,7 @@ function getTotalAmount() {
     sum += (+elem.textContent)
   })
 
-  $('#sum').html(sum)
+  return sum
 }
 
 // export
