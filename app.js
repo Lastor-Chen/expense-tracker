@@ -13,9 +13,6 @@ const session = require('express-session')              // session 輔助套件
 const passport = require('passport')                    // 處理 user authentication
 const flash = require('connect-flash')                  // 產生 flash message
 
-// dev mode
-const dotenv = require('dotenv')                        // 透過 .env 設定環境變數
-
 // custom module
 const isAuthed = require('./config/auth.js')
 
@@ -23,7 +20,7 @@ const isAuthed = require('./config/auth.js')
 // ==============================
 
 // 開發模式，使用環境變數
-if (process.env.NODE_ENV !== 'production') { dotenv.config() }
+if (process.env.NODE_ENV !== 'production') { require('dotenv') }
 
 const app = express()
 const MONGODB_URL = process.env.MONGODB_URI || 'mongodb://localhost/record'
