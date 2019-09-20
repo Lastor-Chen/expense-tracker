@@ -9,7 +9,7 @@ const passport = require('passport')
 const User = require('../models/user.js')
 const bcrypt = require('bcryptjs')
 
-const { checkSignUp } = require('../lib/lib.js')
+const { checkSignUp } = require('../models/lib/lib.js')
 
 // routes '/users'
 // ==============================

@@ -7,7 +7,9 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../models/record.js')
 
-const { categoryMap, getOwnerId } = require('../lib/lib.js')
+// custom module
+const { categoryMap } = require('../models/category.js')
+const { getOwnerId } = require('../models/lib/lib.js')
 
 
 // routes '/record'

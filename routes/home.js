@@ -5,9 +5,10 @@
 
 const express = require('express')
 const router = express.Router()
-
 const Recode = require('../models/record.js')
-const lib = require('../lib/lib.js')
+
+// custom module
+const { getCategoryIcon } = require('../models/category.js')
 
 // routes '/'
 // ==============================
@@ -22,7 +23,7 @@ router.get('/index', (req,res) => {
     let times = 1
     for (const record of records) {
       // 取得 font-awesome icon 名稱
-      record.iconName = lib.getCategoryIcon(record)
+      record.iconName = getCategoryIcon(record)
 
       // format Date { yyyy-mm-dd }
       record.showDate = record.date.toJSON().split('T')[0]

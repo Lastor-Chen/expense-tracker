@@ -1,36 +1,10 @@
-// lib lib.js
+// models/lib lib.js
 
-// record category tool
-// ==============================
-
-/**
- * category 對照 font-awesome CSS 名稱
- * @type {Object} 名稱對照表
- * @property {Category Name}
-*/
-const categoryMap = {
-  '家居物業': 'fa-home',
-  '交通出行': 'fa-shuttle-van',
-  '休閒娛樂': 'fa-grin-beam',
-  '餐飲食品': 'fa-utensils',
-  '其他': 'fa-pen'
-}
-
-/**
- * 依據 category 屬性值，回傳 font-awesome icon 名稱
- * @param {Object} record mongoose Document
- */
-function getCategoryIcon(record) {
-  for (const key in categoryMap) {
-    if (record.category === key) return categoryMap[key]
-  }
-}
+const User = require('../user.js')
 
 
 // 檢查註冊表單
 // ==============================
-
-const User = require('../models/user.js')
 
 /**
  * 檢查註冊表單，回傳 error message (String)
@@ -67,4 +41,4 @@ function getOwnerId(req) {
 // export
 // ==============================
 
-module.exports = { getCategoryIcon, categoryMap, checkSignUp, getOwnerId }
+module.exports = { checkSignUp, getOwnerId }
