@@ -8,7 +8,7 @@ const router = express.Router()
 const Recode = require('../models/record.js')
 
 // custom module
-const { getCategoryIcon } = require('../models/category.js')
+const { getCategoryIcon, getSelectList } = require('../models/category.js')
 
 // routes '/'
 // ==============================
@@ -30,14 +30,17 @@ router.get('/index', (req,res) => {
 
       // 加入奇數列 flag
       if (times % 2 === 1) { record.oddEven = 'odd'}
-      
+
       // 計算總金額
       totalAmount += record.amount
 
       times++
     }
 
-    res.render('index', { css: 'index', js: 'index', records, totalAmount })
+    // HTML select list 參照表
+    const select = getSelectList()
+
+    res.render('index', { css: 'index', js: 'index', select, records, totalAmount })
   })
 })
 
