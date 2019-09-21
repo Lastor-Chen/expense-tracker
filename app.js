@@ -54,8 +54,11 @@ app.set('view engine', 'hbs')
 // 模板引擎公用變數
 app.use((req, res, next) => {
   // user 資料
-  res.locals.user = req.user
-
+  if (req.user) {
+    if (!req.user.name) { req.user.name = 'User' }
+    res.locals.user = req.user
+  }
+  
   // flash message
   res.locals.success = req.flash('success')
   res.locals.warning = req.flash('warning')

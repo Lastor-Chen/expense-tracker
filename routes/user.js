@@ -9,7 +9,9 @@ const passport = require('passport')
 const User = require('../models/user.js')
 const bcrypt = require('bcryptjs')
 
+// custom module
 const { checkSignUp } = require('../models/lib/lib.js')
+const isAuthed = require('../config/auth.js')
 
 // routes '/users'
 // ==============================
@@ -63,6 +65,13 @@ router.get('/signout', (req, res) => {
 
   res.redirect('/users/signin')
 })
+
+router.get('/setting', isAuthed, (req, res) => {
+  console.log('get', req.user)
+  const user = req.user
+  res.render('setting', { user })
+})
+
 
 // export
 // ==============================

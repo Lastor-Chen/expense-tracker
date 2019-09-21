@@ -22,7 +22,7 @@
         <a class="navbar-brand" href="/">簡單記帳簿</a>
         <div class="ml-auto">
           {{#if user}}
-            <span class="mr-2 text-white">{{user.name}}</span>
+            <a href="/users/setting" class="btn mr-2 text-white">{{user.name}}</a>
             <a href="/users/signout" class="btn btn-outline-secondary">登出</a>
           {{else if signin}}
             <a href="/users/signup" class="btn btn-outline-light">註冊</a>
