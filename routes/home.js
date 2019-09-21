@@ -15,7 +15,7 @@ const { getCategoryIcon, getSelectList } = require('../models/category.js')
 
 router.get('/', (req, res) => res.redirect('/index'))
 
-router.get('/index', (req,res) => {
+router.get('/index', (req, res) => {
   const month = req.query.month
 
   const query = { userId: req.user.id }

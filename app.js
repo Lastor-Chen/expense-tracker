@@ -42,7 +42,13 @@ app.use(passport.session())
 require('./config/passport.js')(passport)
 
 // 設定模板引擎
-app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'main' }))
+const hbs = exphbs.create({ 
+  extname: 'hbs', 
+  defaultLayout: 'main', 
+  helpers: { ifEqual: require('./models/lib/helpers.js') } 
+})
+
+app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 
 // 模板引擎公用變數
