@@ -14,7 +14,12 @@ const { getMonthList } = require('../models/lib/lib.js')
 // routes '/'
 // ==============================
 
-router.get('/', (req, res) => res.redirect('/index'))
+router.get('/', (req, res) => {
+  // 將登入失敗的 flash 洗掉
+  req.flash('email')
+
+  res.redirect('/index')
+})
 
 router.get('/index', (req, res) => {
   // 被篩選的月份

@@ -19,7 +19,7 @@ const isAuthed = require('../config/auth.js')
 router.get('/signin', (req, res) => {
   const email = req.flash('email')
 
-  res.render('signin', { css: 'sign', js: 'sign', signin: 'signin' ,email })
+  res.render('signin', { css: 'sign', js: 'sign', signin: 'signin' , email })
 })
 
 router.post('/signin', (req, res, next) => {
@@ -27,7 +27,7 @@ router.post('/signin', (req, res, next) => {
   req.flash('email', req.body.email)
 
   passport.authenticate('local', {
-    successRedirect: '/index',
+    successRedirect: '/',
     failureRedirect: '/users/signin',
     failureFlash: true,
     badRequestMessage: '您沒有輸入帳號或密碼'
@@ -67,7 +67,6 @@ router.get('/signout', (req, res) => {
 })
 
 router.get('/setting', isAuthed, (req, res) => {
-  console.log('get', req.user)
   const user = req.user
   res.render('setting', { user })
 })

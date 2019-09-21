@@ -55,7 +55,7 @@ app.set('view engine', 'hbs')
 app.use((req, res, next) => {
   // user 資料
   if (req.user) {
-    if (!req.user.name) { req.user.name = 'User' }
+    if (!req.user.name) { req.user.name = 'User' }    // 給預設名
     res.locals.user = req.user
   }
   
