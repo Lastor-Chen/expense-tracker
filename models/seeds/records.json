@@ -2,42 +2,82 @@
   {
     "name": "午餐",
     "category": "餐飲食品",
-    "amount": "60",
-    "date": "2019-09-17T00:00:00.000Z",
+    "amount": 60,
+    "date": "2019-09-21",
     "merchant": "麥當勞"
-  },
-  {
-    "name": "電車",
-    "category": "交通出行",
-    "amount": "60",
-    "date": "2019-09-17T00:00:00.000Z"
   },
   {
     "name": "下午茶",
     "category": "餐飲食品",
-    "amount": "1000",
-    "date": "2019-09-17T00:00:00.000Z",
+    "amount": 130,
+    "date": "2019-09-21",
     "merchant": "85度C"
+  },
+  {
+    "name": "電車",
+    "category": "交通出行",
+    "amount": 60,
+    "date": "2019-09-20"
+  },
+  {
+    "name": "炸雞",
+    "category": "餐飲食品",
+    "amount": 70,
+    "date": "2019-08-21",
+    "merchant": "肯德基"
+  },
+  {
+    "name": "同學會",
+    "category": "其他",
+    "amount": 650,
+    "date": "2019-08-21"
+  },
+  {
+    "name": "被騙錢",
+    "category": "其他",
+    "amount": 3000,
+    "date": "2019-08-15"
   },
   {
     "name": "首飾",
     "category": "其他",
-    "amount": "5000",
-    "date": "2019-09-17T00:00:00.000Z",
+    "amount": 5000,
+    "date": "2019-09-17",
     "merchant": "烏鴉小姐"
   },
   {
     "name": "吸塵器",
     "category": "家居物業",
-    "amount": "2600",
-    "date": "2019-09-17T00:00:00.000Z",
+    "amount": 2600,
+    "date": "2019-09-17",
     "merchant": "萬應屋"
   },
   {
     "name": "流星錘",
     "category": "其他",
-    "amount": "12000",
-    "date": "2019-09-17T00:00:00.000Z",
+    "amount": 12000,
+    "date": "2019-09-20",
     "merchant": "萬應屋"
+  },
+  {
+    "name": "降魔戰槌",
+    "category": "其他",
+    "amount": 1500,
+    "date": "2019-07-17",
+    "merchant": "萬應屋"
+  },
+  {
+    "name": "鬥技場",
+    "category": "休閒娛樂",
+    "amount": 2600,
+    "date": "2019-07-15",
+    "merchant": "地下城"
+  },
+  {
+    "name": "史萊姆浴",
+    "category": "休閒娛樂",
+    "amount": 300,
+    "date": "2019-07-17",
+    "merchant": "奇幻浴場"
   }
 ]

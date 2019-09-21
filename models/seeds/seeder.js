@@ -41,9 +41,10 @@ db.once('open', async () => {
     if (err) console.error(err)
 
     // 加入 userId
-    for (let index = 0; index <= 5; index++) {
-      if (index <= 2) { records[index].userId = users[0].id }
-      if (index >= 3) { records[index].userId = users[1].id }
+    const length = records.length
+    for (let index = 0; index < length; index++) {
+      if (index <= (length / 2) - 1) { records[index].userId = users[0].id }
+      else { records[index].userId = users[1].id }
     }
 
     await Record.create(...records)
