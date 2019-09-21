@@ -15,6 +15,8 @@ if (window.name === 'OAuth') {
   window.close()
 }
 
+// 計算總金額，顯示於頁面
+$('#sum').html(getTotalAmount())
 
 // 刪除確認，僅監聽父層避免產生過多 listener
 $('.data-plane').submit(e => {

@@ -39,9 +39,6 @@ router.get('/index', (req, res) => {
       // 加入奇數列 flag
       if (times % 2 === 1) { record.oddEven = 'odd' }
 
-      // 計算總金額
-      totalAmount += record.amount
-
       times++
     }
 
@@ -51,7 +48,7 @@ router.get('/index', (req, res) => {
     // 月份選單 [1..12]
     const monthList = [...Array(13).keys()].slice(1)
 
-    res.render('index', { css: 'index', js: 'index', select, records, totalAmount, monthList, month })
+    res.render('index', { css: 'index', js: 'index', select, records, monthList, month })
   })  
 })
 
