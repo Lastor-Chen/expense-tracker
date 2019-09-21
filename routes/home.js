@@ -16,8 +16,13 @@ const { getCategoryIcon, getSelectList } = require('../models/category.js')
 router.get('/', (req, res) => res.redirect('/index'))
 
 router.get('/index', (req,res) => {
-  Recode.find({ userId: req.user.id }, (err, records) => {
-    if (err) console.error(err)
+  const month = req.query.month
+
+  const query = { userId: req.user.id }
+  if (month) { query["$where"] = `this.date.getMonth() === ${month - 1}` }
+
+  Recode.find(query).sort({ date: -1 }).exec((err, records) => {
+    if (err) return console.error(err)
 
     let totalAmount = 0
     let times = 1
@@ -29,7 +34,7 @@ router.get('/index', (req,res) => {
       record.showDate = record.date.toJSON().split('T')[0]
 
       // 加入奇數列 flag
-      if (times % 2 === 1) { record.oddEven = 'odd'}
+      if (times % 2 === 1) { record.oddEven = 'odd' }
 
       // 計算總金額
       totalAmount += record.amount
@@ -40,8 +45,11 @@ router.get('/index', (req,res) => {
     // HTML select list 參照表
     const select = getSelectList()
 
-    res.render('index', { css: 'index', js: 'index', select, records, totalAmount })
-  })
+    // 月份選單 [1..12]
+    const monthList = [...Array(13).keys()].slice(1)
+
+    res.render('index', { css: 'index', js: 'index', select, records, totalAmount, monthList, month })
+  })  
 })
 
 

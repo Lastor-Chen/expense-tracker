@@ -27,7 +27,7 @@ $('.data-plane').submit(e => {
 })
 
 
-// Filter
+// category filter
 $('#filter').on('input', e => {
   const keyword = e.target.value
 
@@ -40,4 +40,10 @@ $('#filter').on('input', e => {
   // 計算總金額，顯示於頁面
   const totalAmount = getTotalAmount()
   $('#sum').html(totalAmount)
+})
+
+
+// month filter
+$('#month').on('input', e => {
+  $('#month').submit()
 })

@@ -1,21 +1,33 @@
 <div class="w-75 mx-auto">
   <div class="row">
-    <div class="col-12 col-lg-4 px-0">
+    <div class="col-6 col-lg-2 pl-0">
+      <form action="/index" id="month" method="GET">
+        <select class="form-control" name="month">
+          <option value="" disabled selected>月份</option>
+          <option value="">所有月份</option>
+          {{#each monthList}}
+            <option value="{{this}}">{{this}}月</option>
+          {{/each}}
+          {{!-- <option value="1">1月</option> --}}
+        </select>
+      </form>
+    </div>
+    <div class="col-6 col-lg-2 px-0">
       <select id="filter" class="form-control mb-3" name="filter">
         <option value="" disabled selected>分類</option>
         <option value="all">全部</option>
         {{#each select}}
-        <option value="{{category}}">{{category}}</option>
+          <option value="{{category}}">{{category}}</option>
         {{/each}}
       </select>
-
-      <div class="mb-3 d-flex">
-        <span class="mr-3 pl-1">總金額：</span>
-        <span id="sum" class="h1 text-danger">{{totalAmount}}</span>
-      </div>
     </div>
   </div>
   
+  <div class="row mb-3">
+    <span class="mr-3 pl-1">總金額：</span>
+    <span id="sum" class="h1 text-danger">{{totalAmount}}</span>
+  </div>
+
   {{!-- record plane --}}
   <div class="data-plane">
     {{#each records}}
