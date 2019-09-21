@@ -8,9 +8,11 @@
   </div>
   
   <div class="col-auto col-md-5 col-lg-4">
-    {{> alert}}
+    {{#ifEqual form 'profile'}}
+      {{> alert}}
+    {{/ifEqual}}
     {{!-- edit profile --}}
-    <form action="/users/setting/profile?_method=PUT" method="POST">
+    <form action="/users/setting/profile?_method=PUT&form=profile" method="POST">
       <div class="border-bottom pb-2 mb-3">修改帳戶資料</div>
       <div class="form-group">
         {{#if input}}
@@ -32,18 +34,17 @@
       </div>
     </form>
     {{!-- edit password --}}
-    <form action="/users/setting/password?_method=PUT" method="POST">
+    {{#ifEqual form 'password'}}
+      {{> alert}}
+    {{/ifEqual}}
+    <form action="/users/setting/password?_method=PUT&form=password" method="POST">
       <div class="border-bottom pb-2 mb-3">修改密碼</div>
       <div class="form-group">
-        <input type="password" class="form-control" id="password" name="password" placeholder="原始密碼 (8~12位數) *" minlength="8"
+        <input type="password" class="form-control" id="password" name="password" placeholder="新密碼 (8~12位數) *" minlength="8"
           maxlength="12" required>
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="新密碼 (8~12位數) *" minlength="8"
-          maxlength="12" required>
-      </div>
-      <div class="form-group">
-        <input type="password" class="form-control" id="newPassword2" name="newPassword2" placeholder="確認密碼 *" minlength="8"
+        <input type="password" class="form-control" id="password2" name="password2" placeholder="確認密碼 *" minlength="8"
           maxlength="12" required>
       </div>
       <div class="form-group text-right">

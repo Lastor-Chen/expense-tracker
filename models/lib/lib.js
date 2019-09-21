@@ -78,6 +78,23 @@ async function checkProfile(input, operator) {
   return msg
 }
 
+// 檢查 password 表單
+// ==============================
+
+/**
+ * 檢查 password 表單，回傳 error message { Array }
+ * @param {*} input user input
+ */
+function checkPassword(input) {
+  const { password, password2 } = input
+  const msg = []
+
+  if (!password) { msg.push('請輸入新密碼') }
+  if (password !== password2) { msg.push('密碼不一致') }
+
+  return msg
+}
+
 // mongoose Query 輔助工具
 // ==============================
 
@@ -112,4 +129,4 @@ function getMonthList() {
 // export
 // ==============================
 
-module.exports = { checkSignUp, checkNewEdit, getOwnerId, getMonthList, checkProfile }
+module.exports = { checkSignUp, checkNewEdit, getOwnerId, getMonthList, checkProfile, checkPassword }

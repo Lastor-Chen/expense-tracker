@@ -10,7 +10,7 @@ const User = require('../models/user.js')
 const bcrypt = require('bcryptjs')
 
 // custom module
-const { checkSignUp, checkProfile } = require('../models/lib/lib.js')
+const { checkSignUp, checkProfile, checkPassword } = require('../models/lib/lib.js')
 const isAuthed = require('../config/auth.js')
 
 // routes '/users'
@@ -75,10 +75,11 @@ router.get('/setting', isAuthed, (req, res) => {
 router.put('/setting/profile', isAuthed, async (req, res) => {
   const input = req.body
   const operator = req.user
+  const form = req.query.form
 
   // 檢查表單
   const error = await checkProfile(input, operator)
-  if (error.length) return res.render('setting', { input, error })
+  if (error.length) return res.render('setting', { input, form, error })
 
   // 更新
   await User.updateOne({ _id: operator.id }, { ...input })
@@ -87,7 +88,19 @@ router.put('/setting/profile', isAuthed, async (req, res) => {
 })
 
 router.put('/setting/password', isAuthed, (req, res) => {
-  const input = req.body
+  const { password } = req.body
+  const user = req.user
+  const form = req.query.form
+
+  // 檢查表單
+  const error = checkPassword(req.body)
+  if (error.length) return res.render('setting', { user, form, error })
+
+  // 加鹽後更新
+  bcrypt.hash(password, 10, async (err, hash) => {
+    await User.updateOne({ _id: user.id }, { password: hash })
+    res.redirect('/index')
+  })
 })
 
 
