@@ -26,7 +26,7 @@
       <div class="form-group">
         <select class="form-control" name="category" required>
           {{!-- 只有 new 頁面預設顯示 "分類" --}}
-          <option value="" disabled {{#if new}}selected{{/if}}>分類</option>
+          <option value="" disabled {{#if new}}selected{{/if}}>分類 *</option>
           {{#each select}}
             <option value="{{category}}" {{#if selected}}selected{{/if}}>{{category}}</option>
           {{/each}}
@@ -37,6 +37,13 @@
           <input type="number" class="form-control" name="amount" placeholder="金額 *" min="0" step="1" value="{{input.amount}}" required>
         {{else}}
           <input type="number" class="form-control" name="amount" placeholder="金額 *" min="0" step="1" value="{{record.amount}}" required>
+        {{/if}}
+      </div>
+      <div class="form-group">
+        {{#if input}}
+          <input type="text" class="form-control" name="merchant" placeholder="店家" value="{{input.merchant}}">
+        {{else}}
+          <input type="text" class="form-control" name="merchant" placeholder="店家" value="{{record.merchant}}">
         {{/if}}
       </div>
       <div class="form-group text-right">

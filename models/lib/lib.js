@@ -34,7 +34,9 @@ async function checkSignUp(input) {
  * @param {Object} input user input
  */
 function checkNewEdit(input) {
-  if (Object.values(input).some(val => !val)) return ['所有欄位皆為必填']
+  // merchant 以外為必填
+  const inputKeys = Object.keys(input)
+  if (inputKeys.some(key => !input[key] && key !== 'merchant')) return ['店家以外皆為必填']
 
   const msg = []
 

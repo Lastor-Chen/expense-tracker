@@ -10,6 +10,9 @@ const recordSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  merchant: {
+    type: String
+  },
   date: {
     type: Date,
     required: true
