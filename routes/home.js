@@ -9,6 +9,7 @@ const Recode = require('../models/record.js')
 
 // custom module
 const { getCategoryIcon, getSelectList } = require('../models/category.js')
+const { getMonthList } = require('../models/lib/lib.js')
 
 // routes '/'
 // ==============================
@@ -27,7 +28,6 @@ router.get('/index', (req, res) => {
   Recode.find(query).sort({ date: -1 }).exec((err, records) => {
     if (err) return console.error(err)
 
-    let totalAmount = 0
     let times = 1
     for (const record of records) {
       // 取得 font-awesome icon 名稱
@@ -42,11 +42,11 @@ router.get('/index', (req, res) => {
       times++
     }
 
-    // HTML select list 參照表
+    // HTML category select list 參照表
     const select = getSelectList()
 
-    // 月份選單 [1..12]
-    const monthList = [...Array(13).keys()].slice(1)
+    // 月份選單 [1..(system month)]
+    const monthList = getMonthList()
 
     res.render('index', { css: 'index', js: 'index', select, records, monthList, month })
   })  
