@@ -7,3 +7,9 @@
   font-size: 2rem;
   color: #65d1e2;
 }
+
+@media screen and (max-width: 992px) {
+  .record-ls .record {
+    background-color: #f0f2f4;
+  }
+}
