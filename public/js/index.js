@@ -2,18 +2,11 @@
 
 // import module
 // =================================
-import { showSelected, setOddEven, getTotalAmount } from './lib.js'
+import { showSelected, setOddEven, getTotalAmount } from './lib/lib.js'
 
 
 // 執行序
 // =================================
-
-// 此窗口為 OAuth pop-up 導入時，關閉
-if (window.name === 'OAuth') {
-  // 父視窗重新導向
-  window.opener.location.replace('/index')
-  window.close()
-}
 
 // 計算總金額，顯示於頁面
 $('#sum').html(getTotalAmount())
