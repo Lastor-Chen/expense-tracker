@@ -41,8 +41,11 @@ function checkNewEdit(input) {
   const msg = []
 
   // 檢查 date { yyyy-mm-dd }
-  const pattern = /^[1-9]\d{3}-\d{2}-\d{2}/
-  if (!pattern.test(input.date)) msg.push('日期必須符合格式 yyyy-mm-dd')
+  // 說明: https://medium.com/@esganzerla/simple-date-validation-with-javascript-caea0f71883c
+  const date = new Date(input.date)   // 如不符合格式，+date 會回傳 NaN
+  const day = +input.date.split('-')[2]   // 取 dd，轉 Number
+  const isValidDate = (+date && date.getDate() === day)   // 後段用於排除不存在日期，如 2019-02-30
+  if (!isValidDate) msg.push('日期不符合格式 yyyy-mm-dd 或不存在')
 
   // 檢查 category
   const cateList = Object.keys(categoryMap)
