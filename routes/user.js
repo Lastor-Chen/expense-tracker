@@ -10,7 +10,7 @@ const User = require('../models/user.js')
 const bcrypt = require('bcryptjs')
 
 // custom module
-const { checkSignUp } = require('../models/lib/lib.js')
+const { checkSignUp, checkProfile } = require('../models/lib/lib.js')
 const isAuthed = require('../config/auth.js')
 
 // routes '/users'
@@ -70,6 +70,24 @@ router.get('/setting', isAuthed, (req, res) => {
   console.log('get', req.user)
   const user = req.user
   res.render('setting', { user })
+})
+
+router.put('/setting/profile', isAuthed, async (req, res) => {
+  const input = req.body
+  const operator = req.user
+
+  // 檢查表單
+  const error = await checkProfile(input, operator)
+  if (error.length) return res.render('setting', { input, error })
+
+  // 更新
+  await User.updateOne({ _id: operator.id }, { ...input })
+
+  res.redirect('/index')
+})
+
+router.put('/setting/password', isAuthed, (req, res) => {
+  const input = req.body
 })
 
 

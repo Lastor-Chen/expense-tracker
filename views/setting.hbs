@@ -8,21 +8,31 @@
   </div>
   
   <div class="col-auto col-md-5 col-lg-4">
+    {{> alert}}
     {{!-- edit profile --}}
-    <form action="/users/setting" method="POST">
+    <form action="/users/setting/profile?_method=PUT" method="POST">
       <div class="border-bottom pb-2 mb-3">修改帳戶資料</div>
       <div class="form-group">
-        <input type="text" class="form-control" id="name" name="name" value="{{user.name}}" placeholder="名稱">
+        {{#if input}}
+          <input type="text" class="form-control" id="name" name="name" value="{{input.name}}" placeholder="名稱">
+        {{else}}
+          <input type="text" class="form-control" id="name" name="name" value="{{user.name}}" placeholder="名稱">
+        {{/if}}
+        <small class="form-text text-muted">如未輸入，將使用預設名稱: User</small>
       </div>
       <div class="form-group">
-        <input type="email" class="form-control" id="email" name="email" value="{{user.email}}" placeholder="sample@gmail.com">
+        {{#if input.email}}
+          <input type="email" class="form-control" id="email" name="email" value="{{input.email}}" placeholder="sample@gmail.com">
+        {{else}}
+          <input type="email" class="form-control" id="email" name="email" value="{{user.email}}" placeholder="sample@gmail.com">
+        {{/if}}
       </div>
       <div class="form-group text-right">
         <button type="submit" class="btn btn-primary">修改</button>
       </div>
     </form>
     {{!-- edit password --}}
-    <form action="/users/setting" method="POST">
+    <form action="/users/setting/password?_method=PUT" method="POST">
       <div class="border-bottom pb-2 mb-3">修改密碼</div>
       <div class="form-group">
         <input type="password" class="form-control" id="password" name="password" placeholder="原始密碼 (8~12位數) *" minlength="8"

@@ -57,6 +57,27 @@ function checkNewEdit(input) {
   return msg
 }
 
+// 檢查 profile 表單
+// ==============================
+
+/**
+ * 檢查 profile 表單，回傳 error message { Array }
+ * @param {Object} input user input
+ * @param {Object} operator user data
+ */
+async function checkProfile(input, operator) {
+  // 確認未填
+  const msg = []
+  if (!input.email) { msg.push('Email 不得為空') }
+
+  // 確認 Email
+  await User.findOne({ email: input.email }).then(user => {
+    if (user && user.id !== operator.id) { msg.push('這個 Email 已被使用') }
+  })
+
+  return msg
+}
+
 // mongoose Query 輔助工具
 // ==============================
 
@@ -91,4 +112,4 @@ function getMonthList() {
 // export
 // ==============================
 
-module.exports = { checkSignUp, checkNewEdit, getOwnerId, getMonthList }
+module.exports = { checkSignUp, checkNewEdit, getOwnerId, getMonthList, checkProfile }
