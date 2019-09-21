@@ -6,16 +6,25 @@ Database used mongoDB.
 簡易的記帳 App。 <br>
 這是一個用 Node.js 架設網站的練習專案。
 
+目前使用 branch 保存不同版本，數字越大者越新。
+
+| 單元 | branch   |
+| ----| -------- |
+| A16 | master   |
+| A17 | ac_a17   |
+
 #### 練習目標
-* 沿用目前前後端所學，打造一個 Web App
+* 沿用至今前後端所學，打造一個 Web App
 * Node.js + Express 建立 App
 * 透過 mongoose 操作 mongoDB 資料庫
-* 使用者認證系統
+* 實作使用者認證系統
+* 透過 PaaS 雲端服務佈署 App
 
 ## Preview Pages
-<img src="./public/img/preview.jpg" alt="preview" width="500px">
+<img src="./public/img/preview.jpg" alt="preview" width="500px" target="_blank">
 
 #### 功能
+A16
 * 使用者認證系統，可註冊/登入/登出
 * 可透過 Facebook 進行登入 (localhost限定)
 * 可以建立/編輯/刪除支出紀錄
@@ -25,8 +34,13 @@ Database used mongoDB.
 * RWD 自適應
 * 前後端皆檢查 user input
 
+A17
+* 新增店家欄位
+* 新增依月份篩選功能
+* 新增編輯 User setting 功能
+
 ## Usage
-* 可前往 [Heroku](https://lastor-expense-tracker.herokuapp.com/) 瀏覽佈署版本。 (無法使用 Facebook 登入)
+* 可前往 [Heroku](https://lastor-expense-tracker-a17.herokuapp.com) 瀏覽佈署版本。 (無法使用 Facebook 登入)
 * 或在本機端執行 (需下載，並安裝依賴套件)
 
 安裝方法，請參考下方 [Dependency packages](#Dependency-packages) 與 [Installation](#Installation) 項目。 <br>
@@ -44,9 +58,9 @@ Database used mongoDB.
     $ net start mongodb
     ```
 
-1. 回到專案目錄，執行 seed，用於 mongoDB 建立基本資料 (非必須)
+1. 回到專案目錄，執行 seeder，用於 mongoDB 建立基本資料 (非必須)
     ```
-    $ npm run seed
+    $ npm run seeder
     ```
 
     * 執行 seed 後可使用假帳戶進行快速測試
