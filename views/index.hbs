@@ -3,10 +3,10 @@
     <div class="col-6 col-lg-2 pl-0">
       <form action="/index" id="month" method="GET">
         <select class="form-control" name="month">
-          <option value="" disabled selected>月份</option>
+          <option value="" disabled {{#if month}}{{else}}selected{{/if}}>月份</option>
           <option value="">所有月份</option>
           {{#each monthList}}
-            <option value="{{this}}">{{this}}月</option>
+            <option value="{{this}}" {{#ifEqual this ../month}}selected{{/ifEqual}}>{{this}}月</option>
           {{/each}}
           {{!-- <option value="1">1月</option> --}}
         </select>

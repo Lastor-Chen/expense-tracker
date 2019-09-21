@@ -16,11 +16,14 @@ const { getCategoryIcon, getSelectList } = require('../models/category.js')
 router.get('/', (req, res) => res.redirect('/index'))
 
 router.get('/index', (req, res) => {
-  const month = req.query.month
+  // 被篩選的月份
+  const month = +req.query.month
 
+  // db query 條件，$where 類似 JS 的 .filter
   const query = { userId: req.user.id }
   if (month) { query["$where"] = `this.date.getMonth() === ${month - 1}` }
 
+  // 日期 {最新順} 排列
   Recode.find(query).sort({ date: -1 }).exec((err, records) => {
     if (err) return console.error(err)
 
