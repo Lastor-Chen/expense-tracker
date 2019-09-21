@@ -20,7 +20,7 @@ const isAuthed = require('./config/auth.js')
 // ==============================
 
 // 開發模式，使用環境變數
-if (process.env.NODE_ENV !== 'production') { require('dotenv') }
+if (process.env.NODE_ENV !== 'production') { require('dotenv').config() }
 
 const app = express()
 const MONGODB_URL = process.env.MONGODB_URI || 'mongodb://localhost/record'
