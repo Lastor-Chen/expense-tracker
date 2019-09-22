@@ -44,7 +44,25 @@ function getTotalAmount() {
   return sum
 }
 
+/**
+ * 計算頁面各各分類的總金額，輸出 Array
+ * @param {*} cateList 分類清單
+ */
+function countEachAmount(cateList) {
+  const countArray = []
+
+  cateList.forEach(cate => {
+    let sum = 0
+    $(`[data-cate="${cate}"]:visible .amount`).each((index, elem) => {
+      sum += (+elem.textContent)
+    })
+    countArray.push(sum)
+  })
+
+  return countArray
+}
+
 // export
 // =================================
 
-export { showSelected, setOddEven, getTotalAmount }
+export { showSelected, setOddEven, getTotalAmount, countEachAmount }
