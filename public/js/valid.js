@@ -1,4 +1,4 @@
-// index 頁面附屬 js
+// valid 頁面附屬 js
 
 // 此窗口為 OAuth pop-up 導入時，關閉
 if (window.name === 'OAuth') {

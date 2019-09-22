@@ -22,8 +22,21 @@
         <a class="navbar-brand" href="/index">簡單記帳簿</a>
         <div class="ml-auto">
           {{#if user}}
-            <a href="/users/setting" class="btn mr-2 text-white">{{user.name}}</a>
-            <a href="/users/signout" class="btn btn-outline-secondary">登出</a>
+            <button type="button" class="user-btn btn mr-2 text-white position-relative">
+              <i class="fas fa-user-circle"></i>
+              <span>{{user.name}}</span>
+            </button>
+            {{!-- 帳戶選單 --}}
+            <div class="card profile" data-inside="true">
+              <div class="card-body" data-inside="true">
+                <h5 class="card-title" data-inside="true">{{user.name}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted" data-inside="true">{{user.email}}</h6>
+              </div>
+              <div class="card-footer text-muted d-flex justify-content-between align-items-center" data-inside="true">
+                <a href="/users/setting" class="card-link">帳戶設置</a>
+                <a href="/users/signout" class="btn btn-outline-secondary">登出</a>
+              </div>
+            </div>
           {{else if signin}}
             <a href="/users/signup" class="btn btn-outline-light">註冊</a>
           {{else}}
@@ -67,6 +80,7 @@
       crossorigin="anonymous"></script>
   </import>
   <!-- custom JS -->
+  <script src="/js/main.js"></script>
   {{#if js}}
     <script type="module" src="/js/{{js}}.js"></script>
   {{/if}}
