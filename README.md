@@ -21,7 +21,8 @@ Database used mongoDB.
 * 透過 PaaS 雲端服務佈署 App
 
 ## Preview Pages
-<img src="./public/img/preview.jpg" alt="preview" width="500px" target="_blank">
+<img src="./public/img/preview01.jpg" alt="preview" width="500px" target="_blank">
+<img src="./public/img/preview02.jpg" alt="preview" width="500px" target="_blank">
 
 #### 功能
 A16
@@ -38,6 +39,7 @@ A17
 * 新增店家欄位
 * 新增依月份篩選功能
 * 新增編輯 User setting 功能
+* 新增圓餅圖分析數據功能
 
 ## Usage
 * 可前往 [Heroku](https://lastor-expense-tracker-a17.herokuapp.com) 瀏覽佈署版本。 (無法使用 Facebook 登入)
@@ -145,11 +147,12 @@ A17
 }
 ```
 
-#### other package (imported from CDN)
+#### front-end package (imported from CDN)
 * [Bootstrap](https://getbootstrap.com/) v4.3.1
   * jQuery v3.4.1
   * popper v1.14.7
 * [Font-Awesome](https://fontawesome.com/) v5.10.2
+* [Chart.js](https://www.chartjs.org/) v2.8.0
 
 
 ## Installation
